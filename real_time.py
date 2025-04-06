@@ -10,7 +10,8 @@ import time
 
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "real_pipeline/credentials.json"
 
-#
+### USE UR CREDENTIALS
+### CREATE CREDENTIALS FILE IN SAME DIRECTORY
 
 import pyaudio
 
