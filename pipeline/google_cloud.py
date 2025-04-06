@@ -1,0 +1,63 @@
+import os
+from google.cloud import speech
+from google.cloud import translate_v2 as translate
+from google.cloud import texttospeech
+
+
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "pipeline/credentials.json"
+
+language = "ar"
+
+client = speech.SpeechClient()
+
+with open("pipeline/input_audio.wav", "rb") as f:
+    audio = speech.RecognitionAudio(content=f.read())
+
+
+config = speech.RecognitionConfig(
+    encoding=speech.RecognitionConfig.AudioEncoding.LINEAR16,
+    sample_rate_hertz=16000,
+    language_code="en-US",
+)
+
+response = client.recognize(config=config, audio=audio)
+text = ""
+for result in response.results:
+    text += result.alternatives[0].transcript
+    print(result.alternatives[0].transcript)
+
+
+translate_client = translate.Client()
+
+target = language
+
+result = translate_client.translate(text, target_language=target)
+translated_text = result["translatedText"]
+print("Translated:", translated_text)
+
+# Path to your service account
+
+client = texttospeech.TextToSpeechClient()
+
+# Input text to synthesize
+synthesis_input = texttospeech.SynthesisInput(text=translated_text)
+
+# Voice configuration
+voice = texttospeech.VoiceSelectionParams(
+    language_code=language, ssml_gender=texttospeech.SsmlVoiceGender.NEUTRAL
+)
+
+# Audio output format (MP3 is compact + clean)
+audio_config = texttospeech.AudioConfig(audio_encoding=texttospeech.AudioEncoding.MP3)
+
+# Make the request
+response = client.synthesize_speech(
+    input=synthesis_input, voice=voice, audio_config=audio_config
+)
+
+# Save to file
+with open("pipeline/output.mp3", "wb") as out:
+    print("Writing to file")
+    out.write(response.audio_content)
+
+print("✅ Audio saved as output.mp3")
