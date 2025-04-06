@@ -1,0 +1,110 @@
+/* General Styles */
+.app-container {
+  background-color: #222222;
+  color: white;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  padding: 2rem 2rem;
+  display: flex;
+  gap: 3rem;
+  box-sizing: border-box;
+}
+.primary-btn {
+  /* background-color: #97f576; */
+  width: 100%;
+  background-color: transparent;
+  color: white;
+  padding: 0.5rem 1rem;
+  padding-left: 0;
+  border: none;
+  border-radius: 3rem;
+  cursor: pointer;
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-align: left;
+  text-decoration: underline;
+  text-underline-offset: 0.5rem;
+  overflow: hidden;
+  /* margin-top: 2rem; */
+}
+
+.leftGradientbox {
+  flex-grow: 1;
+  height: 100%;
+  /* height: 50rem; */
+  box-sizing: border-box;
+  overflow: scroll;
+  display: flex;
+  /* background-color: #97f576; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  flex-direction: column;
+  padding: 2rem;
+  padding-top: 1rem;
+  /* background: rgb(32, 32, 32);
+  background: linear-gradient(
+    40deg,
+    rgba(32, 32, 32, 1) 50%,
+    rgba(66, 221, 95, 1) 100%
+  ); */
+  border-radius: 1.5rem;
+  /* border: 0.3rem solid black; */
+}
+
+.rightGradientBox {
+  width: 24rem;
+  height: 20rem;
+  display: flex;
+  background-color: #97f576;
+  /* justify-content: center; */
+  /* align-items: center; */
+  flex-direction: column;
+  padding: 2rem;
+  padding-top: 1rem;
+  background: rgb(66, 221, 95);
+  background: linear-gradient(
+    40deg,
+    rgba(66, 221, 95, 1) 10%,
+    rgba(32, 32, 32, 1) 90%
+  );
+  border-radius: 1.5rem;
+  /* border: 0.3rem solid black; */
+}
+.typing-container {
+    font-family: 'Courier New', Courier, monospace;
+    white-space: pre-wrap; /* Allow text to wrap to the next line */
+    width: 100%;
+    height: 100%;
+    font-size: 2.5rem;
+    margin-top: 1.5rem;
+  }
+  
+  .typing-line {
+    display: block;
+    width: 100%;
+    opacity: 0;
+    animation: typing 3s steps(40) 1s forwards, blink-caret 0.75s step-end infinite;
+  }
+  
+  /* Typing animation */
+  @keyframes typing {
+    0% {
+      width: 0;
+      opacity: 1;
+    }
+    100% {
+      width: 100%;
+      opacity: 1;
+    }
+  }
+  
+  /* Blinking cursor animation */
+  @keyframes blink-caret {
+    50% {
+      border-color: transparent;
+    }
+    100% {
+      border-color: black;
+    }
+  }
+  
