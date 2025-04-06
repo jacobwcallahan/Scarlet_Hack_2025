@@ -1,0 +1,5 @@
+pyaudio
+websockets
+google-cloud-speech
+google-cloud-translate
+google-cloud-texttospeech
